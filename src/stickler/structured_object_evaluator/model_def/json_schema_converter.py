@@ -317,7 +317,7 @@ class JsonSchemaFieldConverter:
         
         # Recursively create nested model from the nested schema
         # Import here to avoid circular dependency
-        from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+        from ..models.structured_model import StructuredModel
         
         # CRITICAL: Pass parent schema's definitions/defs to nested schema
         # so that nested $refs can be resolved
@@ -383,7 +383,7 @@ class JsonSchemaFieldConverter:
         
         # Array of objects -> List[StructuredModel]
         if items_type == "object":
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
             try:
                 ElementModel = StructuredModel._from_json_schema_internal(items_schema, field_path=f"{field_path}[]")
             except ValueError:

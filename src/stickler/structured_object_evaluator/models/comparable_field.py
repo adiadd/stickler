@@ -1,6 +1,6 @@
 """Backward-compatibility shim. Import from stickler.structured_object_evaluator.model_def.comparable_field instead."""
 
-from stickler.structured_object_evaluator.model_def.comparable_field import (
+from ..model_def.comparable_field import (
     ComparableField,
     _reconstruct_comparator_from_type,
     add_comparison_schema,

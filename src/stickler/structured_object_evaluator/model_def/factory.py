@@ -109,7 +109,7 @@ class ModelFactory:
         """
         # Import here to avoid circular dependency
         if base_class is None:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
             base_class = StructuredModel
 
         # Validate configuration structure
@@ -237,7 +237,7 @@ class ModelFactory:
         """
         # Import here to avoid circular dependency
         if base_class is None:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
             base_class = StructuredModel
 
         # Validate model name

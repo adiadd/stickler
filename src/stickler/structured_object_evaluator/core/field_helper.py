@@ -65,7 +65,7 @@ class FieldHelper:
                     # Check if List element type is a StructuredModel subclass
                     element_type = args[0]
                     # Import here to avoid circular imports
-                    from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+                    from ..models.structured_model import StructuredModel
 
                     if inspect.isclass(element_type) and issubclass(
                         element_type, StructuredModel

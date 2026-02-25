@@ -1,6 +1,6 @@
 """Backward-compatibility shim. Import from stickler.structured_object_evaluator.model_def.configuration instead."""
 
-from stickler.structured_object_evaluator.model_def.configuration import (
+from ..model_def.configuration import (
     ConfigurationHelper,
 )
 

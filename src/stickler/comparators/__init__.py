@@ -5,18 +5,18 @@ and ANLS Star evaluation systems. These comparators implement a unified
 interface that works with both systems.
 """
 
-from stickler.comparators.base import BaseComparator
-from stickler.comparators.exact import ExactComparator
-from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.comparators.llm import LLMComparator
-from stickler.comparators.numeric import NumericComparator, NumericExactC
-from stickler.comparators.semantic import SemanticComparator
-from stickler.comparators.structured import StructuredModelComparator
-from stickler.comparators._embedding_utils import generate_bedrock_embedding
+from .base import BaseComparator
+from .exact import ExactComparator
+from .levenshtein import LevenshteinComparator
+from .llm import LLMComparator
+from .numeric import NumericComparator, NumericExactC
+from .semantic import SemanticComparator
+from .structured import StructuredModelComparator
+from ._embedding_utils import generate_bedrock_embedding
 
 # Import LLMComparator if strands-agents is available
 try:
-    from stickler.comparators.llm import LLMComparator  # noqa: F401
+    from .llm import LLMComparator  # noqa: F401
 
     LLM_AVAILABLE = True
 except ImportError:
@@ -24,7 +24,7 @@ except ImportError:
 
 # Import BERTComparator if evaluate is available
 try:
-    from stickler.comparators.bert import BERTComparator  # noqa: F401
+    from .bert import BERTComparator  # noqa: F401
 
     BERT_AVAILABLE = True
 except ImportError:
@@ -32,7 +32,7 @@ except ImportError:
 
 # Import FuzzyComparator and Fuzz alias only if rapidfuzz is available
 try:
-    from stickler.comparators.fuzzy import (  # noqa: F401
+    from .fuzzy import (  # noqa: F401
         RAPIDFUZZ_AVAILABLE,
         Fuzz,
         FuzzyComparator,

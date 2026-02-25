@@ -10,7 +10,7 @@ from pydantic import Field
 
 from .comparable_field import ComparableField
 from stickler.comparators.registry import create_comparator
-from stickler.structured_object_evaluator.core.types import resolve_type_string
+from ..core.types import resolve_type_string
 
 
 class FieldConverter:
@@ -123,7 +123,7 @@ class FieldConverter:
         nested_fields_config = field_config["fields"]
 
         # Recursively create the nested model class
-        from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+        from ..models.structured_model import StructuredModel
 
         # Create nested model configuration
         nested_config = {

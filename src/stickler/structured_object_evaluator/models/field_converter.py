@@ -1,6 +1,6 @@
 """Backward-compatibility shim. Import from stickler.structured_object_evaluator.model_def.field_converter instead."""
 
-from stickler.structured_object_evaluator.model_def.field_converter import (
+from ..model_def.field_converter import (
     FieldConverter,
     _global_converter,
     convert_field_config,

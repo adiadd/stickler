@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Any, Dict, Union, get_args, get_origin
 from stickler.comparators.levenshtein import LevenshteinComparator
 
 if TYPE_CHECKING:
-    from stickler.structured_object_evaluator.core.field import (
+    from ..core.field import (
         ComparableFieldConfig,
     )
 from stickler.comparators.structured import StructuredModelComparator
@@ -135,7 +135,7 @@ class ConfigurationHelper:
             annotation = field_info.annotation
 
             # Import here to avoid circular import
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             # Handle List[SomeType] annotations
             if get_origin(annotation) is list:
@@ -199,7 +199,7 @@ class ConfigurationHelper:
                 clip_under_threshold = getattr(json_func, "_clip_under_threshold", True)
                 aggregate = getattr(json_func, "_aggregate", False)
 
-                from stickler.structured_object_evaluator.core.field import ComparableFieldConfig
+                from ..core.field import ComparableFieldConfig
 
                 return ComparableFieldConfig(
                     comparator=comparator,
@@ -242,7 +242,7 @@ class ConfigurationHelper:
                 )
                 aggregate = comparison_config.get("aggregate", False)
 
-                from stickler.structured_object_evaluator.core.field import ComparableFieldConfig
+                from ..core.field import ComparableFieldConfig
 
                 return ComparableFieldConfig(
                     comparator=comparator,
@@ -255,7 +255,7 @@ class ConfigurationHelper:
         # Check if this is a structured field type that needs special handling
         if ConfigurationHelper.is_structured_field_type(field_info):
             # Use StructuredModelComparator with higher threshold for structured types
-            from stickler.structured_object_evaluator.core.field import ComparableFieldConfig
+            from ..core.field import ComparableFieldConfig
 
             return ComparableFieldConfig(
                 comparator=StructuredModelComparator(),
@@ -265,7 +265,7 @@ class ConfigurationHelper:
 
         # Default fallback for primitive fields - use class-level threshold if available
         default_threshold = getattr(cls, "match_threshold", 0.5)
-        from stickler.structured_object_evaluator.core.field import ComparableFieldConfig
+        from ..core.field import ComparableFieldConfig
 
         return ComparableFieldConfig(
             comparator=LevenshteinComparator(), threshold=default_threshold, weight=1.0
@@ -374,7 +374,7 @@ class ConfigurationHelper:
             True if annotation is a StructuredModel subclass
         """
         try:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             return inspect.isclass(annotation) and issubclass(
                 annotation, StructuredModel
@@ -393,7 +393,7 @@ class ConfigurationHelper:
             True if annotation is Optional[StructuredModel]
         """
         try:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             # Handle Union types (like Optional[StructuredModel])
             if get_origin(annotation) is Union:
@@ -424,7 +424,7 @@ class ConfigurationHelper:
             The StructuredModel class, or None if not found
         """
         try:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             if get_origin(annotation) is Union:
                 union_args = get_args(annotation)
@@ -451,7 +451,7 @@ class ConfigurationHelper:
             True if annotation is List[StructuredModel] or Optional[List[StructuredModel]]
         """
         try:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             # Handle direct List[StructuredModel] annotations
             if get_origin(annotation) is list:
@@ -493,7 +493,7 @@ class ConfigurationHelper:
             The StructuredModel class, or None if not found
         """
         try:
-            from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+            from ..models.structured_model import StructuredModel
 
             # Handle direct List[StructuredModel]
             if get_origin(annotation) is list:

@@ -1,6 +1,6 @@
 """Backward-compatibility shim. Import from stickler.structured_object_evaluator.core.types instead."""
 
-from stickler.structured_object_evaluator.core.types import (
+from ..core.types import (
     TypeResolver,
     _global_resolver,
     get_global_resolver,
