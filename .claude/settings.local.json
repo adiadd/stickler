@@ -22,7 +22,8 @@
       "Bash(python:*)",
       "Bash(gh pr:*)",
       "Bash(grep:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(git mv:*)"
     ]
   }
 }
