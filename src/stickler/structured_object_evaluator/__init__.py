@@ -10,7 +10,7 @@ from .core.non_match import NonMatchField, NonMatchType
 from .model_def.structured_model import StructuredModel
 from .evaluation.single import anls_score, compare_json, compare_structured_models
 from .evaluation.key_scores import ScoreNode, construct_nested_dict, merge_and_calculate_mean
-from .utils.pretty_print import print_confusion_matrix, print_confusion_matrix_html
+from stickler.reporting.text import print_confusion_matrix, print_confusion_matrix_html
 
 __all__ = [
     "StructuredModel",

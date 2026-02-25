@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 
-from stickler.utils.markdown_util import MarkdownUtil
+from stickler.reporting.markdown import MarkdownUtil
 
 
 class ProcessEvaluation(BaseModel):
