@@ -1,5 +1,12 @@
 """Backward-compatibility shim. Import from stickler.comparators.registry instead."""
 
+import warnings as _warnings
+_warnings.warn(
+    "Import from stickler.comparators.registry instead. This shim will be removed in v0.3.0.",
+    DeprecationWarning,
+    stacklevel=2,
+)
+
 from stickler.comparators.registry import (
     ComparatorRegistry,
     _global_registry,
