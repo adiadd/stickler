@@ -10,7 +10,7 @@ from .null_handler import NullHelper
 from .result import ResultHelper
 
 if TYPE_CHECKING:
-    from ..models.structured_model import StructuredModel
+    from ..model_def.structured_model import StructuredModel
 
 
 class ComparisonDispatcher:
@@ -98,7 +98,7 @@ class ComparisonDispatcher:
                 "weight": float
             }
         """
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
         
         # ============================================================================
         # STEP 1: Get field configuration

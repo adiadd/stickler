@@ -26,7 +26,7 @@ from typing import Dict
 
 from sklearn.metrics import roc_auc_score
 
-from ..models.structured_model import StructuredModel
+from ..model_def.structured_model import StructuredModel
 
 
 class ConfidenceCalculator:

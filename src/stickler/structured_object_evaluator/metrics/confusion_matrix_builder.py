@@ -7,7 +7,7 @@ the calculation of complete confusion matrices with aggregate and derived metric
 from typing import TYPE_CHECKING, Any, Dict
 
 if TYPE_CHECKING:
-    from ..models.structured_model import StructuredModel
+    from ..model_def.structured_model import StructuredModel
 
 
 class ConfusionMatrixBuilder:

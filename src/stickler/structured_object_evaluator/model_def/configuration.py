@@ -135,7 +135,7 @@ class ConfigurationHelper:
             annotation = field_info.annotation
 
             # Import here to avoid circular import
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             # Handle List[SomeType] annotations
             if get_origin(annotation) is list:
@@ -374,7 +374,7 @@ class ConfigurationHelper:
             True if annotation is a StructuredModel subclass
         """
         try:
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             return inspect.isclass(annotation) and issubclass(
                 annotation, StructuredModel
@@ -393,7 +393,7 @@ class ConfigurationHelper:
             True if annotation is Optional[StructuredModel]
         """
         try:
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             # Handle Union types (like Optional[StructuredModel])
             if get_origin(annotation) is Union:
@@ -424,7 +424,7 @@ class ConfigurationHelper:
             The StructuredModel class, or None if not found
         """
         try:
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             if get_origin(annotation) is Union:
                 union_args = get_args(annotation)
@@ -451,7 +451,7 @@ class ConfigurationHelper:
             True if annotation is List[StructuredModel] or Optional[List[StructuredModel]]
         """
         try:
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             # Handle direct List[StructuredModel] annotations
             if get_origin(annotation) is list:
@@ -493,7 +493,7 @@ class ConfigurationHelper:
             The StructuredModel class, or None if not found
         """
         try:
-            from ..models.structured_model import StructuredModel
+            from .structured_model import StructuredModel
 
             # Handle direct List[StructuredModel]
             if get_origin(annotation) is list:

@@ -11,7 +11,7 @@ from ..comparison.hungarian_helper import HungarianHelper
 from .helpers import MetricsHelper
 
 if TYPE_CHECKING:
-    from ..models.structured_model import StructuredModel
+    from ..model_def.structured_model import StructuredModel
 
 
 class ConfusionMatrixCalculator:
@@ -59,7 +59,7 @@ class ConfusionMatrixCalculator:
             >>> print(result["tp"], result["fn"])
         """
         # Import here to avoid circular imports
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
         
         gt_list = getattr(self.model, field_name)
         pred_list = other_list
@@ -91,7 +91,7 @@ class ConfusionMatrixCalculator:
                 }
             )
             # Add non-matches for each FA item using NonMatchesHelper
-            from ..models.non_matches_helper import NonMatchesHelper
+            from ..evaluation.non_matches_helper import NonMatchesHelper
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -101,7 +101,7 @@ class ConfusionMatrixCalculator:
                 {"tp": 0, "fa": 0, "fd": 0, "fp": 0, "tn": 0, "fn": len(gt_list)}
             )
             # Add non-matches for each FN item using NonMatchesHelper
-            from ..models.non_matches_helper import NonMatchesHelper
+            from ..evaluation.non_matches_helper import NonMatchesHelper
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -135,7 +135,7 @@ class ConfusionMatrixCalculator:
 
             # Collect individual object-level non-matches using NonMatchesHelper
             if gt_list and isinstance(gt_list[0], StructuredModel):
-                from ..models.non_matches_helper import NonMatchesHelper
+                from ..evaluation.non_matches_helper import NonMatchesHelper
                 non_matches_helper = NonMatchesHelper()
                 non_matches = non_matches_helper.collect_list_non_matches(
                     field_name, gt_list, pred_list
@@ -225,7 +225,7 @@ class ConfusionMatrixCalculator:
         similarity = None
         if not gt_is_null and not pred_is_null:
             # Import here to avoid circular imports
-            from ..models.structured_model import StructuredModel
+            from ..model_def.structured_model import StructuredModel
             
             if isinstance(gt_value, StructuredModel) and isinstance(
                 pred_value, StructuredModel
@@ -295,7 +295,7 @@ class ConfusionMatrixCalculator:
             >>> print(metrics["items.name"]["tp"])
         """
         # Import here to avoid circular imports
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
         
         nested_metrics = {}
 
@@ -596,7 +596,7 @@ class ConfusionMatrixCalculator:
             E.g., {"address.street": {...}, "address.city": {...}}
         """
         # Import here to avoid circular imports
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
         
         nested_metrics = {}
 

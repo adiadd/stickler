@@ -123,7 +123,7 @@ class FieldConverter:
         nested_fields_config = field_config["fields"]
 
         # Recursively create the nested model class
-        from ..models.structured_model import StructuredModel
+        from .structured_model import StructuredModel
 
         # Create nested model configuration
         nested_config = {

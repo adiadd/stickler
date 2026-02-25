@@ -18,7 +18,7 @@ from .helpers import ComparisonHelper
 from .hungarian_helper import HungarianHelper
 
 if TYPE_CHECKING:
-    from ..models.structured_model import StructuredModel
+    from ..model_def.structured_model import StructuredModel
 
 
 class StructuredListComparator:
@@ -511,4 +511,4 @@ class StructuredListComparator:
 
 
 # Import needed at bottom to avoid circular imports
-from ..models.structured_model import StructuredModel
+from ..model_def.structured_model import StructuredModel

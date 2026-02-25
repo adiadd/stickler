@@ -65,7 +65,7 @@ class FieldHelper:
                     # Check if List element type is a StructuredModel subclass
                     element_type = args[0]
                     # Import here to avoid circular imports
-                    from ..models.structured_model import StructuredModel
+                    from ..model_def.structured_model import StructuredModel
 
                     if inspect.isclass(element_type) and issubclass(
                         element_type, StructuredModel
@@ -75,7 +75,7 @@ class FieldHelper:
             # Handle direct StructuredModel annotations
             elif inspect.isclass(annotation):
                 # Import here to avoid circular imports
-                from .structured_model import StructuredModel
+                from ..model_def.structured_model import StructuredModel
 
                 if issubclass(annotation, StructuredModel):
                     return True

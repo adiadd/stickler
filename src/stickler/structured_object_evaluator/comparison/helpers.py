@@ -40,7 +40,7 @@ class ComparisonHelper:
    
         # Use HungarianHelper for Hungarian matching operations
         hungarian_helper = HungarianHelper()
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
 
         # Use the appropriate comparator based on item types
         # Import here to avoid circular import
@@ -211,7 +211,7 @@ class ComparisonHelper:
             return result["overall_score"]
 
         # Handle nested StructuredModel objects
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
 
         if isinstance(self_value, StructuredModel) and isinstance(
             other_value, StructuredModel

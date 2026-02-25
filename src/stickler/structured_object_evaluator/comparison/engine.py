@@ -8,7 +8,7 @@ dispatcher, collectors, and calculators.
 from typing import TYPE_CHECKING, Any, Dict
 
 if TYPE_CHECKING:
-    from ..models.structured_model import StructuredModel
+    from ..model_def.structured_model import StructuredModel
 
 
 class ComparisonEngine:
@@ -57,7 +57,7 @@ class ComparisonEngine:
     def non_match_collector(self):
         """Lazy initialization of NonMatchCollector."""
         if self._non_match_collector is None:
-            from ..models.non_match_collector import NonMatchCollector
+            from ..evaluation.non_match_collector import NonMatchCollector
             self._non_match_collector = NonMatchCollector(self.model)
         return self._non_match_collector
 
@@ -65,7 +65,7 @@ class ComparisonEngine:
     def field_comparison_collector(self):
         """Lazy initialization of FieldComparisonCollector."""
         if self._field_comparison_collector is None:
-            from ..models.field_comparison_collector import FieldComparisonCollector
+            from ..evaluation.field_comparison_collector import FieldComparisonCollector
             self._field_comparison_collector = FieldComparisonCollector(self.model)
         return self._field_comparison_collector
 
@@ -343,7 +343,7 @@ class ComparisonEngine:
             fa_count += len(other.__pydantic_extra__)
 
         # Also recursively check nested StructuredModel objects for extra fields
-        from ..models.structured_model import StructuredModel
+        from ..model_def.structured_model import StructuredModel
         
         for field_name in self.model.__class__.model_fields:
             if field_name == "extra_fields":
