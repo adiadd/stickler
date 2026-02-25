@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 class NonMatchCollector:
     """Collects non-matching fields during comparison for detailed analysis.
-    
+
     This class is responsible for collecting and documenting fields that don't
     match between compared StructuredModel instances. It provides two collection
     methods:
@@ -25,7 +25,7 @@ class NonMatchCollector:
 
     def __init__(self, model: "StructuredModel"):
         """Initialize collector with the ground truth model.
-        
+
         Args:
             model: The ground truth StructuredModel instance
         """
@@ -33,20 +33,18 @@ class NonMatchCollector:
         self.helper = NonMatchesHelper()
 
     def collect_enhanced_non_matches(
-        self, 
-        recursive_result: dict, 
-        other: "StructuredModel"
+        self, recursive_result: dict, other: "StructuredModel"
     ) -> List[Dict[str, Any]]:
         """Collect enhanced non-matches with object-level granularity.
-        
+
         This method walks through the recursive comparison result and collects
         non-matches at the object level for list fields, providing more detailed
         information about which specific objects in lists don't match.
-        
+
         Args:
             recursive_result: Result from compare_recursive containing field comparison details
             other: The predicted StructuredModel instance
-            
+
         Returns:
             List of non-match dictionaries with enhanced object-level information
         """
@@ -56,9 +54,10 @@ class NonMatchCollector:
         for field_name, field_result in recursive_result.get("fields", {}).items():
             gt_val = getattr(self.model, field_name)
             pred_val = getattr(other, field_name, None)
-            
+
             # Import here to avoid circular dependency
             from ..model_def.structured_model import StructuredModel
+
             # Handle null list cases
             if (
                 (gt_val is None or (isinstance(gt_val, list) and len(gt_val) == 0))
@@ -98,10 +97,7 @@ class NonMatchCollector:
                 )
                 all_non_matches.extend(object_non_matches)
 
-            elif (
-                isinstance(gt_val, list)
-                and isinstance(pred_val, list)
-            ):
+            elif isinstance(gt_val, list) and isinstance(pred_val, list):
                 # Use NonMatchesHelper for object-level collection
                 object_non_matches = self.helper.collect_list_non_matches(
                     field_name, gt_val, pred_val

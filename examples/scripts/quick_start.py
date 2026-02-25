@@ -13,8 +13,12 @@ Usage:
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
-from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import (
+    ComparableField,
+)
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 # Step 1: Define your data structures
@@ -198,7 +202,9 @@ def demo_evaluator_detailed_analysis():
 
     print("Evaluating similar but not identical orders...")
 
-    result = gt_order.compare_with(pred_order, include_confusion_matrix=True, evaluator_format=True)
+    result = gt_order.compare_with(
+        pred_order, include_confusion_matrix=True, evaluator_format=True
+    )
 
     print("\n📊 Overall Metrics:")
     print(f"  Precision: {result['overall']['precision']:.3f}")

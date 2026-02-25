@@ -9,7 +9,9 @@ capabilities including nested models and custom comparators.
 
 import json
 
-from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 def demo_basic_model_creation():

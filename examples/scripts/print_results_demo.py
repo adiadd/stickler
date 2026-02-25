@@ -13,15 +13,19 @@ Usage:
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.evaluation.bulk import (
-    BulkStructuredModelEvaluator,
-)
-from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
-from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 
 # Import the beautiful print functions
 from stickler.reporting.text import (
     print_confusion_matrix,
+)
+from stickler.structured_object_evaluator.evaluation.bulk import (
+    BulkStructuredModelEvaluator,
+)
+from stickler.structured_object_evaluator.model_def.comparable_field import (
+    ComparableField,
+)
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
 )
 
 
@@ -115,7 +119,9 @@ def demo_evaluator_printing():
 
     print("Comparing orders with product lists...")
 
-    result = gt_order.compare_with(pred_order, include_confusion_matrix=True, evaluator_format=True)
+    result = gt_order.compare_with(
+        pred_order, include_confusion_matrix=True, evaluator_format=True
+    )
 
     print("\n🎯 Using print_confusion_matrix() with evaluator format results:")
     print_confusion_matrix(result, show_details=True)
@@ -196,7 +202,9 @@ def demo_advanced_print_options():
         ],
     )
 
-    result = gt_order.compare_with(pred_order, include_confusion_matrix=True, evaluator_format=True)
+    result = gt_order.compare_with(
+        pred_order, include_confusion_matrix=True, evaluator_format=True
+    )
 
     print("\n🎯 Standard output:")
     print_confusion_matrix(result, show_details=True)
@@ -236,9 +244,7 @@ def main():
     print("✅ print_confusion_matrix() - Universal pretty printer")
     print("   • Works with: compare_with(), bulk results")
     print("   • Features: Colors, bars, filtering, sorting")
-    print(
-        "   • Import: from stickler.reporting.text import print_confusion_matrix"
-    )
+    print("   • Import: from stickler.reporting.text import print_confusion_matrix")
 
     print("\n✅ bulk_evaluator.pretty_print_metrics() - Bulk-specific printer")
     print("   • Works with: BulkStructuredModelEvaluator results only")
@@ -256,9 +262,7 @@ def main():
 
     print("\n📚 Quick Usage:")
     print("   # For any evaluation result:")
-    print(
-        "   from stickler.reporting.text import print_confusion_matrix"
-    )
+    print("   from stickler.reporting.text import print_confusion_matrix")
     print("   result = model1.compare_with(model2, include_confusion_matrix=True)")
     print("   print_confusion_matrix(result)")
 

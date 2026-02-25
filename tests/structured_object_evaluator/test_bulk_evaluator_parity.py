@@ -910,4 +910,3 @@ class TestMultiDocumentAggregation:
         assert bulk_evaluator._processed_count == 50, (
             f"Expected 50 processed documents, got {bulk_evaluator._processed_count}"
         )
-

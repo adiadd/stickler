@@ -17,8 +17,12 @@ from stickler.comparators.levenshtein import LevenshteinComparator
 from stickler.structured_object_evaluator.evaluation.bulk import (
     BulkStructuredModelEvaluator,
 )
-from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
-from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import (
+    ComparableField,
+)
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 # Define a simple document model for demonstration

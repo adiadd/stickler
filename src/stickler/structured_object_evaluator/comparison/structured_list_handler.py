@@ -195,11 +195,9 @@ class StructuredListComparator:
                 )
             else:
                 threshold_corrected_pairs.append((gt_idx, pred_idx, raw_score))
-        
-        classification_threshold = (
-                0.01  # Almost everything that's not 0.0 should be TP
-            )
-        
+
+        classification_threshold = 0.01  # Almost everything that's not 0.0 should be TP
+
         match_result = ComparisonHelper.unordered_list_metrics(
             threshold_corrected_pairs, gt_list, pred_list, classification_threshold
         )
@@ -431,6 +429,7 @@ class StructuredListComparator:
     def _add_derived_metrics_recursively(self, metrics_dict: Dict[str, Any]) -> None:
         """Recursively add derived metrics to all levels of the structure."""
         from ..metrics.helpers import MetricsHelper
+
         metrics_helper = MetricsHelper()
 
         # Add derived metrics to overall if present

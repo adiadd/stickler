@@ -1,5 +1,3 @@
-
-
 """Comprehensive test coverage for aggregate=False behavior.
 
 This test suite ensures that StructuredModel fields with aggregate=False behave correctly:
@@ -483,4 +481,3 @@ def test_null_handling_aggregate_false():
         f"Expected 1 FA (GT null, pred present), got {contact_cm['fa']}"
     )
     assert contact_cm["fp"] == 1, f"Expected 1 FP, got {contact_cm['fp']}"
-

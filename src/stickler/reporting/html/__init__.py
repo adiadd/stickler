@@ -11,5 +11,5 @@ __all__ = [
     "EvaluationHTMLReporter",
     "ReportConfig",
     "SectionGenerator",
-    "VisualizationEngine"
+    "VisualizationEngine",
 ]

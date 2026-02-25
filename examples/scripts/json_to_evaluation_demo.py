@@ -16,7 +16,9 @@ import os
 import tempfile
 from pathlib import Path
 
-from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 def create_sample_json_files():

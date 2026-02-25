@@ -1,5 +1,3 @@
-
-
 """Test case specifically for the aggregate_testing.ipynb notebook issue.
 
 The notebook shows a 'contact' field with wrong totals (3 instead of 1 false discovery).

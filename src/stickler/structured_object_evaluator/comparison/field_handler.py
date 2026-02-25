@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 class FieldComparator:
     """Compares primitive and structured fields.
-    
+
     This class is responsible for comparing individual fields between
     StructuredModel instances. It handles:
     - Primitive field comparison (strings, integers, floats)
@@ -23,34 +23,31 @@ class FieldComparator:
 
     def __init__(self, model: "StructuredModel"):
         """Initialize comparator with the ground truth model.
-        
+
         Args:
             model: The ground truth StructuredModel instance
         """
         self.model = model
 
     def compare_primitive_with_scores(
-        self, 
-        gt_val: Any, 
-        pred_val: Any, 
-        field_name: str
+        self, gt_val: Any, pred_val: Any, field_name: str
     ) -> Dict[str, Any]:
         """Compare primitive fields and return metrics + scores.
-        
+
         This method compares primitive values (strings, integers, floats) using
         the configured comparator for the field. It applies threshold-based
         binary classification and returns both raw and threshold-applied scores.
-        
+
         Args:
             gt_val: Ground truth value (primitive type)
             pred_val: Predicted value (primitive type)
             field_name: Name of the field being compared
-            
+
         Returns:
             Dictionary with structure:
             {
                 "overall": {
-                    "tp": int, "fa": int, "fd": int, 
+                    "tp": int, "fa": int, "fd": int,
                     "fp": int, "tn": int, "fn": int
                 },
                 "raw_similarity_score": float,
@@ -90,25 +87,25 @@ class FieldComparator:
         gt_val: "StructuredModel",
         pred_val: "StructuredModel",
         field_name: str,
-        threshold: float
+        threshold: float,
     ) -> Dict[str, Any]:
         """Compare nested StructuredModel fields.
-        
+
         This method compares nested StructuredModel instances, applying
         object-level threshold-based classification while preserving nested
         field details for debugging purposes.
-        
+
         Args:
             gt_val: Ground truth StructuredModel instance
             pred_val: Predicted StructuredModel instance
             field_name: Name of the field being compared
             threshold: Matching threshold for object-level classification
-            
+
         Returns:
             Dictionary with structure:
             {
                 "overall": {
-                    "tp": int, "fa": int, "fd": int, 
+                    "tp": int, "fa": int, "fd": int,
                     "fp": int, "tn": int, "fn": int,
                     "similarity_score": float,
                     "all_fields_matched": bool
@@ -124,7 +121,7 @@ class FieldComparator:
         # Get field configuration
         info = self.model._get_comparison_info(field_name)
         weight = info.weight
-        
+
         # CRITICAL FIX: For StructuredModel fields, object-level metrics should be based on
         # object similarity, not rollup of nested field metrics
 
@@ -139,12 +136,10 @@ class FieldComparator:
         else:
             # Object below threshold -> False Discovery
             object_metrics = {"tp": 0, "fa": 0, "fd": 1, "fp": 1, "tn": 0, "fn": 0}
-            threshold_applied_score = (
-                0.0 if info.clip_under_threshold else raw_score
-            )
+            threshold_applied_score = 0.0 if info.clip_under_threshold else raw_score
 
         # Still generate nested field details for debugging, but don't roll them up
-        # 
+        #
         # TODO: PERFORMANCE ISSUE - Redundant traversal of nested object tree
         #       This call to compare_recursive() creates a new ComparisonEngine and
         #       re-traverses all nested fields, even though we're already in the middle

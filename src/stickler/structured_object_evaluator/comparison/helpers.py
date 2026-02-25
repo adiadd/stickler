@@ -17,7 +17,10 @@ class ComparisonHelper:
 
     @staticmethod
     def compare_unordered_lists(
-        gt_list: List[Any], pred_list: List[Any], comparator: BaseComparator, threshold: float
+        gt_list: List[Any],
+        pred_list: List[Any],
+        comparator: BaseComparator,
+        threshold: float,
     ) -> Dict[str, Any]:
         """Compare two lists as unordered collections using Hungarian matching.
 
@@ -37,7 +40,7 @@ class ComparisonHelper:
             - overall_score: Similarity score for backward compatibility
         """
         # Empty lists are handled early on immediately.
-   
+
         # Use HungarianHelper for Hungarian matching operations
         hungarian_helper = HungarianHelper()
         from ..model_def.structured_model import StructuredModel
@@ -50,7 +53,9 @@ class ComparisonHelper:
         ):
             # For StructuredModel lists, we need to use individual comparison scoring for consistency
             # Use HungarianHelper to get optimal pairings - OPTIMIZED: Single call gets all info
-            hungarian_info = hungarian_helper.get_complete_matching_info(gt_list, pred_list)
+            hungarian_info = hungarian_helper.get_complete_matching_info(
+                gt_list, pred_list
+            )
             matched_pairs = hungarian_info["matched_pairs"]
 
             # CRITICAL FIX: Replace raw scores with threshold-applied scores from individual comparison
@@ -91,16 +96,20 @@ class ComparisonHelper:
             metrics = hungarian.calculate_metrics(gt_list, pred_list)
             matched_pairs = metrics["matched_pairs"]
 
-        return ComparisonHelper.unordered_list_metrics(matched_pairs=matched_pairs,
-                                                       gt_list=gt_list,
-                                                       pred_list=pred_list,
-                                                       classification_threshold=classification_threshold)
-    
+        return ComparisonHelper.unordered_list_metrics(
+            matched_pairs=matched_pairs,
+            gt_list=gt_list,
+            pred_list=pred_list,
+            classification_threshold=classification_threshold,
+        )
+
     @staticmethod
-    def unordered_list_metrics(matched_pairs:List[Any],
-                        gt_list: List[Any],
-                        pred_list: List[Any],
-                        classification_threshold: float):
+    def unordered_list_metrics(
+        matched_pairs: List[Any],
+        gt_list: List[Any],
+        pred_list: List[Any],
+        classification_threshold: float,
+    ):
         """
         Compare two lists as unordered collections using Hungarian matching.
 

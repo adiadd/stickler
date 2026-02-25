@@ -119,7 +119,6 @@ class FieldConverter:
         """
         from typing import List, Optional
 
-
         type_string = field_config["type"]
         nested_fields_config = field_config["fields"]
 

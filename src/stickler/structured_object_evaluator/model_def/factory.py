@@ -18,24 +18,22 @@ from .field_converter import (
 
 class ModelFactory:
     """Factory for creating dynamic StructuredModel subclasses from JSON configuration.
-    
+
     This class implements the factory pattern to create StructuredModel subclasses
     dynamically from JSON configuration. It handles:
     - Configuration validation
     - Field definition conversion
     - Dynamic model creation using Pydantic's create_model()
     - Class-level attribute configuration
-    
+
     The factory ensures that all generated models are fully compatible with Pydantic
     while inheriting all StructuredModel comparison capabilities.
     """
 
     @staticmethod
-    def create_model_from_json(
-        config: Dict[str, Any], base_class: Type = None
-    ) -> Type:
+    def create_model_from_json(config: Dict[str, Any], base_class: Type = None) -> Type:
         """Create a StructuredModel subclass from JSON configuration.
-        
+
         This method leverages Pydantic's native dynamic model creation capabilities to ensure
         full compatibility with all Pydantic features while adding structured comparison
         functionality through inherited StructuredModel methods.
@@ -110,6 +108,7 @@ class ModelFactory:
         # Import here to avoid circular dependency
         if base_class is None:
             from .structured_model import StructuredModel
+
             base_class = StructuredModel
 
         # Validate configuration structure
@@ -180,12 +179,12 @@ class ModelFactory:
         base_class: Type = None,
     ) -> Type:
         """Create a StructuredModel subclass from pre-converted Pydantic fields.
-        
+
         This method accepts field definitions that are already in Pydantic's format
         (type, Field) tuples, bypassing the need for intermediate configuration format.
         This is used by the JSON Schema converter and other advanced use cases where
         fields have already been converted to Pydantic format.
-        
+
         Args:
             model_name: Name for the generated class. Must be a valid Python identifier.
             field_definitions: Dictionary mapping field names to (type, Field) tuples.
@@ -196,20 +195,20 @@ class ModelFactory:
                            Must be between 0.0 and 1.0.
             base_class: The base class to extend (typically StructuredModel).
                        If None, will be imported to avoid circular dependency.
-            
+
         Returns:
             A fully functional StructuredModel subclass created with create_model()
-            
+
         Raises:
             ValueError: If model_name is invalid, match_threshold is out of range,
                        or field_definitions are malformed
-            
+
         Examples:
             >>> from pydantic import Field
             >>> from stickler.structured_object_evaluator.models import StructuredModel
             >>> from stickler.structured_object_evaluator.models.comparable_field import ComparableField
             >>> from stickler.comparators.levenshtein import LevenshteinComparator
-            >>> 
+            >>>
             >>> # Create field definitions directly
             >>> field_defs = {
             ...     "name": (str, ComparableField(
@@ -223,14 +222,14 @@ class ModelFactory:
             ...         default=0
             ...     ))
             ... }
-            >>> 
+            >>>
             >>> PersonClass = ModelFactory.create_model_from_fields(
             ...     model_name="Person",
             ...     field_definitions=field_defs,
             ...     match_threshold=0.8,
             ...     base_class=StructuredModel
             ... )
-            >>> 
+            >>>
             >>> person = PersonClass(name="Alice", age=30)
             >>> person.name
             'Alice'
@@ -238,6 +237,7 @@ class ModelFactory:
         # Import here to avoid circular dependency
         if base_class is None:
             from .structured_model import StructuredModel
+
             base_class = StructuredModel
 
         # Validate model name
@@ -287,22 +287,22 @@ class ModelFactory:
     @staticmethod
     def validate_config(config: Dict[str, Any]) -> None:
         """Validate model configuration before creation.
-        
+
         This method performs structural validation of the configuration dictionary
         to ensure it contains all required keys and has the correct structure.
         It does not validate individual field configurations - that is handled
         by the field_converter module.
-        
+
         Args:
             config: Configuration dictionary to validate
-            
+
         Raises:
             ValueError: If configuration structure is invalid
-            
+
         Examples:
             >>> config = {"fields": {"name": {"type": "str", "comparator": "ExactComparator"}}}
             >>> ModelFactory.validate_config(config)  # No exception raised
-            
+
             >>> invalid_config = {"model_name": "Test"}  # Missing 'fields'
             >>> ModelFactory.validate_config(invalid_config)
             Traceback (most recent call last):

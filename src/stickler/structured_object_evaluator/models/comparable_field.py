@@ -14,4 +14,8 @@ from ..model_def.comparable_field import (
     add_comparison_schema,
 )
 
-__all__ = ["ComparableField", "_reconstruct_comparator_from_type", "add_comparison_schema"]
+__all__ = [
+    "ComparableField",
+    "_reconstruct_comparator_from_type",
+    "add_comparison_schema",
+]

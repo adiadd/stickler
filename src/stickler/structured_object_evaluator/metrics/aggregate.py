@@ -5,26 +5,25 @@ aggregate confusion matrix metrics by rolling up child field metrics to parent n
 """
 
 
-
 class AggregateMetricsCalculator:
     """Calculates aggregate metrics by rolling up child field metrics.
-    
+
     The aggregate field contains the sum of all primitive field confusion matrices
     below that node in the tree. This provides universal field-level granularity
     for analyzing model comparison results.
-    
+
     Architecture:
     -------------
     This class is part of the StructuredModel refactoring that extracts metrics
     calculation logic into dedicated helper classes. It works in conjunction with:
-    
+
     - ConfusionMatrixCalculator: Calculates basic confusion matrix metrics
     - DerivedMetricsCalculator: Calculates derived metrics (F1, precision, recall)
     - ConfusionMatrixBuilder: Orchestrates all metrics calculation
-    
+
     The calculator performs a recursive traversal of the comparison result tree,
     calculating aggregate metrics at each level by summing child field metrics.
-    
+
     Features:
     ---------
     - Recursive traversal of comparison result tree
@@ -32,7 +31,7 @@ class AggregateMetricsCalculator:
     - Sums child aggregate metrics to parent nodes
     - Handles both hierarchical and legacy flat structures
     - Preserves all existing result structure and metadata
-    
+
     Example:
     --------
     >>> calculator = AggregateMetricsCalculator()
@@ -46,17 +45,17 @@ class AggregateMetricsCalculator:
     >>> print(result_with_aggregate["aggregate"])
     {'tp': 1, 'fa': 0, 'fd': 0, 'fp': 0, 'tn': 0, 'fn': 0}
     """
-    
+
     def calculate_aggregate_metrics(self, result: dict) -> dict:
         """Calculate aggregate metrics for all nodes in the result tree.
-        
+
         This method performs a recursive traversal of the comparison result tree,
         calculating aggregate metrics at each level by summing child field metrics.
-        
+
         The aggregate field is added as a sibling to 'overall' and 'fields' at each
         level, containing the sum of all primitive field confusion matrices below
         that node in the tree.
-        
+
         Algorithm:
         ----------
         1. Recursively process all child fields first (depth-first traversal)
@@ -64,7 +63,7 @@ class AggregateMetricsCalculator:
         3. For leaf nodes, use overall metrics as aggregate
         4. Handle both hierarchical (with 'overall') and legacy flat structures
         5. Add aggregate field at each level
-        
+
         Args:
             result: Result from compare_recursive with hierarchical structure.
                    Expected structure:
@@ -77,7 +76,7 @@ class AggregateMetricsCalculator:
                            }
                        }
                    }
-        
+
         Returns:
             Modified result with 'aggregate' fields added at each level.
             The aggregate field contains:
@@ -89,14 +88,14 @@ class AggregateMetricsCalculator:
                 "tn": int,  # Sum of all child TN
                 "fn": int   # Sum of all child FN
             }
-        
+
         Notes:
         ------
         - The method does not modify the original result dictionary
         - Handles arbitrary nesting depth through recursion
         - Preserves all existing keys and structure
         - Works with both new hierarchical and legacy flat result formats
-        
+
         Example:
         --------
         >>> calculator = AggregateMetricsCalculator()
@@ -218,7 +217,7 @@ class AggregateMetricsCalculator:
         result_copy["aggregate"] = aggregate_metrics
 
         return result_copy
-    
+
     def _has_basic_metrics(self, metrics_dict: dict) -> bool:
         """Check if a dictionary has basic confusion matrix metrics.
 

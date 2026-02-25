@@ -16,19 +16,19 @@ if TYPE_CHECKING:
 
 class ConfusionMatrixCalculator:
     """Calculates confusion matrix metrics for field comparisons.
-    
+
     This class is responsible for computing confusion matrix statistics
     (True Positives, False Positives, True Negatives, False Negatives,
     False Discoveries, False Alarms) for individual fields and lists of
     structured models.
-    
+
     Attributes:
         model: The ground truth StructuredModel instance used for comparison
     """
 
     def __init__(self, model: "StructuredModel"):
         """Initialize calculator with the ground truth model.
-        
+
         Args:
             model: The ground truth StructuredModel instance
         """
@@ -38,21 +38,21 @@ class ConfusionMatrixCalculator:
         self, field_name: str, other_list: List[Any]
     ) -> Dict[str, Any]:
         """Calculate confusion matrix for a list field.
-        
+
         This method computes confusion matrix metrics for a list field,
         including nested field metrics for List[StructuredModel] fields.
         It uses Hungarian matching for optimal pairing of list elements.
-        
+
         Args:
             field_name: Name of the list field being compared
             other_list: Predicted list to compare with
-            
+
         Returns:
             Dictionary with:
             - Top-level TP, FP, TN, FN, FD, FA counts and derived metrics
             - nested_fields: Dict with metrics for individual fields within list items
             - non_matches: List of individual object-level non-matches
-            
+
         Example:
             >>> calculator = ConfusionMatrixCalculator(gt_model)
             >>> result = calculator.calculate_list_confusion_matrix("items", pred_list)
@@ -60,7 +60,7 @@ class ConfusionMatrixCalculator:
         """
         # Import here to avoid circular imports
         from ..model_def.structured_model import StructuredModel
-        
+
         gt_list = getattr(self.model, field_name)
         pred_list = other_list
 
@@ -92,6 +92,7 @@ class ConfusionMatrixCalculator:
             )
             # Add non-matches for each FA item using NonMatchesHelper
             from ..evaluation.non_matches_helper import NonMatchesHelper
+
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -102,6 +103,7 @@ class ConfusionMatrixCalculator:
             )
             # Add non-matches for each FN item using NonMatchesHelper
             from ..evaluation.non_matches_helper import NonMatchesHelper
+
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -136,6 +138,7 @@ class ConfusionMatrixCalculator:
             # Collect individual object-level non-matches using NonMatchesHelper
             if gt_list and isinstance(gt_list[0], StructuredModel):
                 from ..evaluation.non_matches_helper import NonMatchesHelper
+
                 non_matches_helper = NonMatchesHelper()
                 non_matches = non_matches_helper.collect_list_non_matches(
                     field_name, gt_list, pred_list
@@ -183,25 +186,25 @@ class ConfusionMatrixCalculator:
         self, field_name: str, other_value: Any, threshold: float = None
     ) -> Dict[str, Any]:
         """Classify a field comparison according to confusion matrix rules.
-        
+
         This method determines the confusion matrix classification for a single
         field comparison based on null states and similarity scores.
-        
+
         Classification rules:
         - Both null: TN (True Negative)
         - GT null, pred non-null: FA (False Alarm)
         - GT non-null, pred null: FN (False Negative)
         - Both non-null and match: TP (True Positive)
         - Both non-null but don't match: FD (False Discovery)
-        
+
         Args:
             field_name: Name of the field being compared
             other_value: Value to compare with
             threshold: Threshold for matching (uses field's threshold if None)
-            
+
         Returns:
             Dictionary with TP, FP, TN, FN, FD counts and derived metrics
-            
+
         Example:
             >>> calculator = ConfusionMatrixCalculator(gt_model)
             >>> result = calculator.classify_field_for_confusion_matrix("name", "John")
@@ -226,7 +229,7 @@ class ConfusionMatrixCalculator:
         if not gt_is_null and not pred_is_null:
             # Import here to avoid circular imports
             from ..model_def.structured_model import StructuredModel
-            
+
             if isinstance(gt_value, StructuredModel) and isinstance(
                 pred_value, StructuredModel
             ):
@@ -271,22 +274,22 @@ class ConfusionMatrixCalculator:
         threshold: float,
     ) -> Dict[str, Dict[str, Any]]:
         """Calculate confusion matrix metrics for fields within list items.
-        
+
         This method performs threshold-gated recursive analysis of fields within
         matched list items. Only pairs with similarity >= match_threshold undergo
         recursive field analysis. Poor matches and unmatched items are treated
         as atomic units.
-        
+
         Args:
             list_field_name: Name of the parent list field (e.g., "transactions")
             gt_list: Ground truth list of StructuredModel objects
             pred_list: Predicted list of StructuredModel objects
             threshold: Matching threshold for recursive analysis
-            
+
         Returns:
             Dictionary mapping nested field paths to their confusion matrix metrics.
             E.g., {"transactions.date": {...}, "transactions.description": {...}}
-            
+
         Example:
             >>> calculator = ConfusionMatrixCalculator(gt_model)
             >>> metrics = calculator.calculate_nested_field_metrics(
@@ -296,7 +299,7 @@ class ConfusionMatrixCalculator:
         """
         # Import here to avoid circular imports
         from ..model_def.structured_model import StructuredModel
-        
+
         nested_metrics = {}
 
         if not gt_list or not isinstance(gt_list[0], StructuredModel):
@@ -362,8 +365,10 @@ class ConfusionMatrixCalculator:
                             # Handle List[StructuredModel] recursively
                             # Create a calculator for the gt_item
                             item_calculator = ConfusionMatrixCalculator(gt_item)
-                            list_classification = item_calculator.calculate_list_confusion_matrix(
-                                field_name, pred_value
+                            list_classification = (
+                                item_calculator.calculate_list_confusion_matrix(
+                                    field_name, pred_value
+                                )
                             )
 
                             # Aggregate the list-level counts
@@ -418,10 +423,12 @@ class ConfusionMatrixCalculator:
                             # Handle primitive fields or single StructuredModel fields
                             # Create a calculator for the gt_item
                             item_calculator = ConfusionMatrixCalculator(gt_item)
-                            field_classification = item_calculator.classify_field_for_confusion_matrix(
-                                field_name,
-                                pred_value,
-                                None,  # Use field's own threshold
+                            field_classification = (
+                                item_calculator.classify_field_for_confusion_matrix(
+                                    field_name,
+                                    pred_value,
+                                    None,  # Use field's own threshold
+                                )
                             )
 
                             # Aggregate counts
@@ -455,8 +462,10 @@ class ConfusionMatrixCalculator:
                             # Also handle deeper nested fields for unmatched items
                             dummy_empty_list = []  # Empty list for comparison
                             item_calculator = ConfusionMatrixCalculator(gt_item)
-                            list_classification = item_calculator.calculate_list_confusion_matrix(
-                                field_name, dummy_empty_list
+                            list_classification = (
+                                item_calculator.calculate_list_confusion_matrix(
+                                    field_name, dummy_empty_list
+                                )
                             )
                             if "nested_fields" in list_classification:
                                 for (
@@ -508,9 +517,13 @@ class ConfusionMatrixCalculator:
                             # We need to create a dummy GT item for comparison to get the structure
                             if gt_list:  # Use structure from an existing GT item
                                 dummy_gt_item = gt_list[0]
-                                dummy_calculator = ConfusionMatrixCalculator(dummy_gt_item)
-                                list_classification = dummy_calculator.calculate_list_confusion_matrix(
-                                    field_name, pred_value
+                                dummy_calculator = ConfusionMatrixCalculator(
+                                    dummy_gt_item
+                                )
+                                list_classification = (
+                                    dummy_calculator.calculate_list_confusion_matrix(
+                                        field_name, pred_value
+                                    )
                                 )
                                 if "nested_fields" in list_classification:
                                     for (
@@ -597,7 +610,7 @@ class ConfusionMatrixCalculator:
         """
         # Import here to avoid circular imports
         from ..model_def.structured_model import StructuredModel
-        
+
         nested_metrics = {}
 
         if not isinstance(gt_nested, StructuredModel) or not isinstance(
@@ -668,8 +681,10 @@ class ConfusionMatrixCalculator:
             else:
                 # Classify this field comparison
                 nested_calculator = ConfusionMatrixCalculator(gt_nested)
-                field_classification = nested_calculator.classify_field_for_confusion_matrix(
-                    field_name, pred_value
+                field_classification = (
+                    nested_calculator.classify_field_for_confusion_matrix(
+                        field_name, pred_value
+                    )
                 )
 
                 # Store the metrics for this nested field
