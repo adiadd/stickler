@@ -14,11 +14,11 @@ import time
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.bulk_structured_model_evaluator import (
+from stickler.structured_object_evaluator.evaluation.bulk import (
     BulkStructuredModelEvaluator,
 )
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
+from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 
 
 # Define a simple document model for demonstration

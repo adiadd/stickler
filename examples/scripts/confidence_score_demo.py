@@ -12,8 +12,8 @@ This script shows how to:
 from typing import List, Optional
 
 from stickler.comparators import LevenshteinComparator, NumericComparator
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
+from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 
 
 # Define a Product model

@@ -5,6 +5,7 @@ and ANLS Star evaluation systems. These comparators implement a unified
 interface that works with both systems.
 """
 
+from ._embedding_utils import generate_bedrock_embedding
 from .base import BaseComparator
 from .exact import ExactComparator
 from .levenshtein import LevenshteinComparator
@@ -12,7 +13,6 @@ from .llm import LLMComparator
 from .numeric import NumericComparator, NumericExactC
 from .semantic import SemanticComparator
 from .structured import StructuredModelComparator
-from ._embedding_utils import generate_bedrock_embedding
 
 # Import LLMComparator if strands-agents is available
 try:

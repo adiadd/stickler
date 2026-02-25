@@ -8,9 +8,10 @@ from typing import Any, Dict, Tuple, Type
 
 from pydantic import Field
 
-from .comparable_field import ComparableField
 from stickler.comparators.registry import create_comparator
+
 from ..core.types import resolve_type_string
+from .comparable_field import ComparableField
 
 
 class FieldConverter:

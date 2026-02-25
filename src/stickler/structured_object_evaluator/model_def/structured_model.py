@@ -21,8 +21,8 @@ from pydantic import BaseModel, Field
 
 from stickler.comparators.base import BaseComparator
 
-from .comparable_field import ComparableField
 from ..core.confidence_helper import ConfidenceHelper
+from .comparable_field import ComparableField
 from .configuration import ConfigurationHelper
 
 
@@ -502,9 +502,9 @@ class StructuredModel(BaseModel):
             StructuredModel subclass created from the schema
         """
         # Import dependencies
-        from .json_schema_validator import validate_json_schema
-        from .json_schema_converter import JsonSchemaFieldConverter
         from .factory import ModelFactory
+        from .json_schema_converter import JsonSchemaFieldConverter
+        from .json_schema_validator import validate_json_schema
 
         # Subtask 4.2: Validate JSON Schema
         try:

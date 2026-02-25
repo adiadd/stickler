@@ -18,8 +18,8 @@ from typing import List, Optional
 from stickler.comparators.exact import ExactComparator
 from stickler.comparators.levenshtein import LevenshteinComparator
 from stickler.comparators.numeric import NumericComparator
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
+from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 
 
 # Define nested data models

@@ -8,8 +8,8 @@ from typing import Any, Dict, List
 
 from stickler.comparators.base import BaseComparator
 
-from .hungarian_helper import HungarianHelper
 from ..core.threshold_helper import ThresholdHelper
+from .hungarian_helper import HungarianHelper
 
 
 class ComparisonHelper:

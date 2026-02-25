@@ -6,8 +6,8 @@ confusion matrix metrics (TP, FP, TN, FN, FD, FA) for field comparisons.
 
 from typing import TYPE_CHECKING, Any, Dict, List
 
-from ..core.field_helper import FieldHelper
 from ..comparison.hungarian_helper import HungarianHelper
+from ..core.field_helper import FieldHelper
 from .helpers import MetricsHelper
 
 if TYPE_CHECKING:

@@ -6,8 +6,9 @@ Pydantic Field instances with ComparableField functionality.
 
 from typing import Any, Dict, List, Tuple, Type
 
-from .comparable_field import ComparableField
 from stickler.comparators.registry import create_comparator
+
+from .comparable_field import ComparableField
 
 # Type mapping from JSON Schema types to Python types
 JSON_TYPE_TO_PYTHON_TYPE = {

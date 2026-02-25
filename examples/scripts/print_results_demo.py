@@ -13,14 +13,14 @@ Usage:
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.bulk_structured_model_evaluator import (
+from stickler.structured_object_evaluator.evaluation.bulk import (
     BulkStructuredModelEvaluator,
 )
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
+from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 
 # Import the beautiful print functions
-from stickler.structured_object_evaluator.utils.pretty_print import (
+from stickler.reporting.text import (
     print_confusion_matrix,
 )
 
@@ -237,7 +237,7 @@ def main():
     print("   • Works with: compare_with(), bulk results")
     print("   • Features: Colors, bars, filtering, sorting")
     print(
-        "   • Import: from stickler.structured_object_evaluator.utils.pretty_print import print_confusion_matrix"
+        "   • Import: from stickler.reporting.text import print_confusion_matrix"
     )
 
     print("\n✅ bulk_evaluator.pretty_print_metrics() - Bulk-specific printer")
@@ -257,7 +257,7 @@ def main():
     print("\n📚 Quick Usage:")
     print("   # For any evaluation result:")
     print(
-        "   from stickler.structured_object_evaluator.utils.pretty_print import print_confusion_matrix"
+        "   from stickler.reporting.text import print_confusion_matrix"
     )
     print("   result = model1.compare_with(model2, include_confusion_matrix=True)")
     print("   print_confusion_matrix(result)")
