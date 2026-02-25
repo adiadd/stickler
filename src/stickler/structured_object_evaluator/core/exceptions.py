@@ -1,0 +1,25 @@
+"""Exception hierarchy for structured object evaluation."""
+
+
+class SticklerError(Exception):
+    ...
+
+
+class ComparisonError(SticklerError):
+    ...
+
+
+class ConfigurationError(SticklerError, ValueError):
+    ...
+
+
+class ComparatorNotFoundError(ConfigurationError):
+    ...
+
+
+class MetricsCalculationError(SticklerError):
+    ...
+
+
+class SchemaValidationError(SticklerError, ValueError):
+    ...

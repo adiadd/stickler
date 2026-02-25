@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:aws.amazon.com)",
+      "Bash(python3 -c \"\nfrom typing import List\nfrom stickler.structured_object_evaluator import StructuredModel, ComparableField\nfrom stickler.comparators import LevenshteinComparator\nfrom pydantic import Field\n\nclass LineItem\\(StructuredModel\\):\n    model_config = {''extra'': ''allow''}\n    product: str = ComparableField\\(comparator=LevenshteinComparator\\(\\), threshold=0.8\\)\n\nclass Invoice\\(StructuredModel\\):\n    items: List[LineItem] = ComparableField\\(comparator=LevenshteinComparator\\(\\)\\)\n\n# Create line item with extra fields\ninv1 = Invoice\\(items=[LineItem\\(product=''Widget A''\\)]\\)\n\n# Create inv2 with line items that have extra fields\nline_item_with_extra = LineItem.model_validate\\({''product'': ''Widget A'', ''hallucinated_field'': ''oops''}\\)\ninv2 = Invoice\\(items=[line_item_with_extra]\\)\n\nprint\\(''Line item has extra:'', inv2.items[0].__pydantic_extra__\\)\n\n# Test if the bug prevents counting extra fields within list items\nresult = inv1.compare_with\\(inv2, include_confusion_matrix=True\\)\nprint\\(''Confusion matrix overall FA:'', result.get\\(''confusion_matrix'', {}\\).get\\(''overall'', {}\\).get\\(''fa''\\)\\)\nprint\\(''Expected FA: 1 \\(from the hallucinated_field within the line item\\)''\\)\n\")",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr checks:*)",
+      "Bash(gh pr diff:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh api:*)",
+      "Bash(git show:*)",
+      "Bash(git fetch:*)",
+      "Bash(python3:*)",
+      "Bash(gh issue view:*)",
+      "Bash(wc:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:deepwiki.com)",
+      "Bash(awk length > 88 {print NR \": \" length \" chars\"}:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(python:*)",
+      "Bash(gh pr:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}
