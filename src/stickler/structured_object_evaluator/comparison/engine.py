@@ -73,7 +73,7 @@ class ComparisonEngine:
     def confusion_matrix_builder(self):
         """Lazy initialization of ConfusionMatrixBuilder."""
         if self._confusion_matrix_builder is None:
-            from ..models.confusion_matrix_builder import ConfusionMatrixBuilder
+            from ..metrics.confusion_matrix_builder import ConfusionMatrixBuilder
             self._confusion_matrix_builder = ConfusionMatrixBuilder(self.model)
         return self._confusion_matrix_builder
 
@@ -300,7 +300,7 @@ class ComparisonEngine:
 
         # If add_confidence_metrics is requested, add confidence metrics
         if add_confidence_metrics:
-            from ..models.confidence_calculator import ConfidenceCalculator
+            from ..metrics.confidence import ConfidenceCalculator
             calculator = ConfidenceCalculator()
             auroc = calculator.calculate_overall_auroc(result, other)
             result['auroc_confidence_metric'] = auroc

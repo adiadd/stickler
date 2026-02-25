@@ -16,7 +16,7 @@ from typing import TYPE_CHECKING, Any, Dict, List
 from ..model_def.comparable_field import ComparableField
 from .helpers import ComparisonHelper
 from .hungarian_helper import HungarianHelper
-from ..models.metrics_helper import MetricsHelper
+from ..metrics.helpers import MetricsHelper
 
 if TYPE_CHECKING:
     from ..models.structured_model import StructuredModel
