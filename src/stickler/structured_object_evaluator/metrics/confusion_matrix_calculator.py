@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING, Any, Dict, List
 from ..core.field_helper import FieldHelper
 from ..comparison.hungarian_helper import HungarianHelper
 from .helpers import MetricsHelper
-from ..models.non_matches_helper import NonMatchesHelper
 
 if TYPE_CHECKING:
     from ..models.structured_model import StructuredModel
@@ -92,6 +91,7 @@ class ConfusionMatrixCalculator:
                 }
             )
             # Add non-matches for each FA item using NonMatchesHelper
+            from ..models.non_matches_helper import NonMatchesHelper
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -101,6 +101,7 @@ class ConfusionMatrixCalculator:
                 {"tp": 0, "fa": 0, "fd": 0, "fp": 0, "tn": 0, "fn": len(gt_list)}
             )
             # Add non-matches for each FN item using NonMatchesHelper
+            from ..models.non_matches_helper import NonMatchesHelper
             non_matches_helper = NonMatchesHelper()
             result["non_matches"] = non_matches_helper.process_null_cases(
                 field_name, gt_list, pred_list
@@ -134,6 +135,7 @@ class ConfusionMatrixCalculator:
 
             # Collect individual object-level non-matches using NonMatchesHelper
             if gt_list and isinstance(gt_list[0], StructuredModel):
+                from ..models.non_matches_helper import NonMatchesHelper
                 non_matches_helper = NonMatchesHelper()
                 non_matches = non_matches_helper.collect_list_non_matches(
                     field_name, gt_list, pred_list

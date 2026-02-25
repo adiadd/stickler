@@ -16,7 +16,6 @@ from typing import TYPE_CHECKING, Any, Dict, List
 from ..model_def.comparable_field import ComparableField
 from .helpers import ComparisonHelper
 from .hungarian_helper import HungarianHelper
-from ..metrics.helpers import MetricsHelper
 
 if TYPE_CHECKING:
     from ..models.structured_model import StructuredModel
@@ -431,6 +430,7 @@ class StructuredListComparator:
 
     def _add_derived_metrics_recursively(self, metrics_dict: Dict[str, Any]) -> None:
         """Recursively add derived metrics to all levels of the structure."""
+        from ..metrics.helpers import MetricsHelper
         metrics_helper = MetricsHelper()
 
         # Add derived metrics to overall if present

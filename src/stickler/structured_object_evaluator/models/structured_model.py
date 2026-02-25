@@ -22,12 +22,8 @@ from pydantic import BaseModel, Field
 from stickler.comparators.base import BaseComparator
 
 from .comparable_field import ComparableField
-from .comparison_helper import ComparisonHelper
 from .confidence_helper import ConfidenceHelper
 from .configuration_helper import ConfigurationHelper
-from .evaluator_format_helper import EvaluatorFormatHelper
-from .hungarian_helper import HungarianHelper
-from .metrics_helper import MetricsHelper
 
 
 class StructuredModel(BaseModel):
@@ -687,6 +683,7 @@ class StructuredModel(BaseModel):
             Tuple of (object_metrics_dict, matched_pairs, matched_gt_indices, matched_pred_indices)
         """
         # Use Hungarian matching for OBJECT-LEVEL counts - OPTIMIZED: Single call gets all info
+        from .hungarian_helper import HungarianHelper
         hungarian_helper = HungarianHelper()
         hungarian_info = hungarian_helper.get_complete_matching_info(gt_list, pred_list)
         matched_pairs = hungarian_info["matched_pairs"]
@@ -749,6 +746,7 @@ class StructuredModel(BaseModel):
             - fp: Total false positives (fd + fa)
             - overall_score: Similarity score for backward compatibility
         """
+        from .comparison_helper import ComparisonHelper
         return ComparisonHelper.compare_unordered_lists(
             gt_list, pred_list, comparator, threshold
         )
@@ -783,6 +781,7 @@ class StructuredModel(BaseModel):
             return comparison_result["overall_score"]
 
         # For non-StructuredModel fields, use existing logic
+        from .comparison_helper import ComparisonHelper
         return ComparisonHelper.compare_field_raw(self, field_name, other_value)
 
     def compare_recursive(self, other: "StructuredModel") -> dict:
@@ -1081,6 +1080,7 @@ class StructuredModel(BaseModel):
         Returns:
             Dictionary with TP, FP, FN, TN counts converted to metrics
         """
+        from .metrics_helper import MetricsHelper
         metrics_helper = MetricsHelper()
         return metrics_helper.convert_score_to_binary_metrics(score, threshold)
 
@@ -1100,6 +1100,7 @@ class StructuredModel(BaseModel):
         Returns:
             Dictionary in evaluator format with overall, fields, confusion_matrix
         """
+        from .evaluator_format_helper import EvaluatorFormatHelper
         return EvaluatorFormatHelper.format_for_evaluator(
             self, result, other, recall_with_fd
         )
@@ -1122,6 +1123,7 @@ class StructuredModel(BaseModel):
         Returns:
             List of metrics dictionaries for each matched item pair
         """
+        from .evaluator_format_helper import EvaluatorFormatHelper
         return EvaluatorFormatHelper.calculate_list_item_metrics(
             field_name, gt_list, pred_list, recall_with_fd
         )
