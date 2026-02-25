@@ -7,9 +7,9 @@ at the field level and object level for both parent objects and nested child obj
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
+from stickler.structured_object_evaluator.evaluation.single import anls_score
 from stickler.structured_object_evaluator.models.comparison_info import ComparisonInfo
 from stickler.structured_object_evaluator.models.structured_model import StructuredModel
-from stickler.structured_object_evaluator.utils import anls_score
 
 
 # Define the models for the test

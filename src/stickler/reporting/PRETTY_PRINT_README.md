@@ -16,7 +16,7 @@ This module provides functionality for displaying structured confusion matrix me
 ### Standalone Functions
 
 ```python
-from stickler.structured_object_evaluator.utils.pretty_print import print_confusion_matrix
+from stickler.reporting.text import print_confusion_matrix
 
 # Basic usage
 print_confusion_matrix(results)
@@ -47,7 +47,7 @@ class MyModel(StructuredModel):
 results = ground_truth.compare_with(predictions, evaluator_format=True)
 
 # Pretty print the results
-from stickler.structured_object_evaluator.utils.pretty_print import print_confusion_matrix
+from stickler.reporting.text import print_confusion_matrix
 print_confusion_matrix(results)
 
 # With options

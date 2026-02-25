@@ -76,7 +76,7 @@ class ModelFactory:
             KeyError: If required configuration keys are missing
 
         Examples:
-            >>> from stickler.structured_object_evaluator.models import StructuredModel
+            >>> from stickler.structured_object_evaluator.model_def import StructuredModel
             >>> config = {
             ...     "model_name": "Product",
             ...     "match_threshold": 0.8,
@@ -205,8 +205,8 @@ class ModelFactory:
 
         Examples:
             >>> from pydantic import Field
-            >>> from stickler.structured_object_evaluator.models import StructuredModel
-            >>> from stickler.structured_object_evaluator.models.comparable_field import ComparableField
+            >>> from stickler.structured_object_evaluator.model_def import StructuredModel
+            >>> from stickler.structured_object_evaluator.model_def.comparable_field import ComparableField
             >>> from stickler.comparators.levenshtein import LevenshteinComparator
             >>>
             >>> # Create field definitions directly

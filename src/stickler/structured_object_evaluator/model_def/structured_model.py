@@ -148,8 +148,8 @@ class StructuredModel(BaseModel):
 
     Example Usage:
     --------------
-    >>> from stickler.structured_object_evaluator.models import StructuredModel
-    >>> from stickler.structured_object_evaluator.models import ComparableField
+    >>> from stickler.structured_object_evaluator.model_def import StructuredModel
+    >>> from stickler.structured_object_evaluator.model_def import ComparableField
     >>> from stickler.comparators import LevenshteinComparator
     >>>
     >>> class Product(StructuredModel):

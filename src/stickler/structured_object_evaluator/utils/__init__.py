@@ -1,11 +1,11 @@
 """Utility functions for structured object evaluation."""
 
-import warnings as _warnings
-
-with _warnings.catch_warnings():
-    _warnings.simplefilter("ignore", DeprecationWarning)
-    from .anls_score import anls_score, compare_json, compare_structured_models
-    from .key_scores import ScoreNode, construct_nested_dict, merge_and_calculate_mean
+from ..evaluation.key_scores import (
+    ScoreNode,
+    construct_nested_dict,
+    merge_and_calculate_mean,
+)
+from ..evaluation.single import anls_score, compare_json, compare_structured_models
 
 __all__ = [
     "ScoreNode",
