@@ -11,11 +11,11 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
+from stickler.structured_object_evaluator.model_def.structured_model import StructuredModel
 from stickler.reporting.html.report_config import ReportConfig, ReportResult
 from stickler.reporting.html.section_generator import SectionGenerator
 from stickler.reporting.html.utils.data_extractors import DataExtractor
 from stickler.reporting.html.visualization_engine import VisualizationEngine
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
 from stickler.utils.process_evaluation import ProcessEvaluation
 
 logger = logging.getLogger(__name__)
