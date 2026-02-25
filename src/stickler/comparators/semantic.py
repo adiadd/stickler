@@ -6,7 +6,7 @@ from typing import Callable, Optional
 from scipy import spatial
 
 from stickler.comparators.base import BaseComparator
-from stickler.comparators.utils import generate_bedrock_embedding
+from stickler.comparators._embedding_utils import generate_bedrock_embedding
 
 
 class SemanticComparator(BaseComparator):

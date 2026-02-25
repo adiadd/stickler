@@ -12,7 +12,7 @@ from stickler.comparators.llm import LLMComparator
 from stickler.comparators.numeric import NumericComparator, NumericExactC
 from stickler.comparators.semantic import SemanticComparator
 from stickler.comparators.structured import StructuredModelComparator
-from stickler.comparators.utils import generate_bedrock_embedding
+from stickler.comparators._embedding_utils import generate_bedrock_embedding
 
 # Import LLMComparator if strands-agents is available
 try:
