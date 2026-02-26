@@ -3,7 +3,7 @@
 import pytest
 from jsonschema.exceptions import SchemaError, ValidationError
 
-from stickler.structured_object_evaluator.utils.json_schema_validator import (
+from stickler.structured_object_evaluator.model_def.json_schema_validator import (
     validate_instance_against_schema,
     validate_json_schema,
 )

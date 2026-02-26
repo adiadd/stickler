@@ -7,7 +7,7 @@ without the more complex structured model tests.
 
 from pytest import approx
 
-from stickler.structured_object_evaluator.utils.anls_score import anls_score
+from stickler.structured_object_evaluator.evaluation.single import anls_score
 
 
 # Basic tests

@@ -14,3 +14,18 @@ Provides the public-facing evaluation functions and bulk evaluator:
 
 Depends on: ``core``, ``comparators``, ``model_def``, ``comparison``, ``metrics``
 """
+
+from .bulk import BulkStructuredModelEvaluator, aggregate_from_comparisons
+from .key_scores import ScoreNode, construct_nested_dict, merge_and_calculate_mean
+from .single import anls_score, compare_json, compare_structured_models
+
+__all__ = [
+    "anls_score",
+    "compare_json",
+    "compare_structured_models",
+    "BulkStructuredModelEvaluator",
+    "aggregate_from_comparisons",
+    "ScoreNode",
+    "construct_nested_dict",
+    "merge_and_calculate_mean",
+]

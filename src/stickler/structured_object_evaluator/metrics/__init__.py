@@ -11,3 +11,19 @@ Computes confusion-matrix counts and derived metrics (precision, recall, F1):
 
 Depends on: ``core``, ``comparators``, ``model_def``, ``comparison``
 """
+
+from .aggregate import AggregateMetricsCalculator
+from .confidence import ConfidenceCalculator
+from .confusion_matrix_builder import ConfusionMatrixBuilder
+from .confusion_matrix_calculator import ConfusionMatrixCalculator
+from .derived import DerivedMetricsCalculator
+from .helpers import MetricsHelper
+
+__all__ = [
+    "AggregateMetricsCalculator",
+    "ConfusionMatrixCalculator",
+    "ConfusionMatrixBuilder",
+    "DerivedMetricsCalculator",
+    "ConfidenceCalculator",
+    "MetricsHelper",
+]

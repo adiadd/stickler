@@ -12,3 +12,19 @@ Contains the classes that define *what* gets compared:
 
 Depends on: ``core``, ``comparators``
 """
+
+from .comparable_field import ComparableField
+from .configuration import ConfigurationHelper
+from .factory import ModelFactory
+from .field_converter import FieldConverter
+from .json_schema_converter import JsonSchemaFieldConverter
+from .structured_model import StructuredModel
+
+__all__ = [
+    "StructuredModel",
+    "ComparableField",
+    "ModelFactory",
+    "ConfigurationHelper",
+    "FieldConverter",
+    "JsonSchemaFieldConverter",
+]

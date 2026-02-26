@@ -12,9 +12,13 @@ from typing import Optional
 from pydantic import Field
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
-from stickler.structured_object_evaluator.utils.compare_json import compare_json
+from stickler.structured_object_evaluator.evaluation.single import compare_json
+from stickler.structured_object_evaluator.model_def.comparable_field import (
+    ComparableField,
+)
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 class InvoiceModel(StructuredModel):

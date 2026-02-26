@@ -16,3 +16,17 @@ field-by-field and list-level comparisons:
 
 Depends on: ``core``, ``comparators``, ``model_def``
 """
+
+from .dispatcher import ComparisonDispatcher
+from .engine import ComparisonEngine
+from .field_handler import FieldComparator
+from .helpers import ComparisonHelper
+from .result import ResultHelper
+
+__all__ = [
+    "ComparisonEngine",
+    "ComparisonDispatcher",
+    "ComparisonHelper",
+    "FieldComparator",
+    "ResultHelper",
+]

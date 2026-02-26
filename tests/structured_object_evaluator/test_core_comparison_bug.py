@@ -9,11 +9,15 @@ This is a CRITICAL issue affecting the core functionality of the library.
 from typing import List
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from stickler.structured_object_evaluator.models.structured_list_comparator import (
+from stickler.structured_object_evaluator.comparison.structured_list_handler import (
     StructuredListComparator,
 )
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler.structured_object_evaluator.model_def.comparable_field import (
+    ComparableField,
+)
+from stickler.structured_object_evaluator.model_def.structured_model import (
+    StructuredModel,
+)
 
 
 class Invoice(StructuredModel):

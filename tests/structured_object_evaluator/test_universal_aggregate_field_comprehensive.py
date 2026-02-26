@@ -14,13 +14,13 @@ from typing import List, Optional
 
 import pytest
 
-from src.stickler.comparators.exact import ExactComparator
-from src.stickler.comparators.levenshtein import LevenshteinComparator
-from src.stickler.comparators.numeric import NumericComparator
-from src.stickler.structured_object_evaluator.models.comparable_field import (
+from stickler.comparators.exact import ExactComparator
+from stickler.comparators.levenshtein import LevenshteinComparator
+from stickler.comparators.numeric import NumericComparator
+from stickler.structured_object_evaluator.model_def.comparable_field import (
     ComparableField,
 )
-from src.stickler.structured_object_evaluator.models.structured_model import (
+from stickler.structured_object_evaluator.model_def.structured_model import (
     StructuredModel,
 )
 

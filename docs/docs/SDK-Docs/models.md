@@ -41,10 +41,6 @@
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.field.CustomField
-    options:
-      heading_level: 3
-
 ::: stickler.structured_object_evaluator.models.comparison_info
     options:
       heading_level: 2

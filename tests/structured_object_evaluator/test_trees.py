@@ -3,7 +3,7 @@
 import pytest
 
 from stickler.comparators.levenshtein import LevenshteinComparator
-from stickler.structured_object_evaluator.trees import (
+from stickler.structured_object_evaluator.evaluation.anls import (
     ANLSDict,
     ANLSLeaf,
     ANLSList,

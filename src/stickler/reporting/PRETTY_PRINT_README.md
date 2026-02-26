@@ -137,4 +137,4 @@ Legend:
 ## Demo
 
 A comprehensive demonstration script is available at:
-`examples/key_information_evaluation/structured_object_evaluator/pretty_print_demo.py`
+`examples/scripts/print_results_demo.py`
