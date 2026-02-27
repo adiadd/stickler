@@ -337,28 +337,9 @@ For complete documentation of all `x-aws-stickler-*` extensions, see the [README
 For cases where you need more control or don't want to use JSON Schema, Stickler provides a custom configuration format via `model_from_json()`.
 
 ### Basic Custom Configuration
-=======
-# StructuredModel Dynamic Creation from JSON
-
-This document describes how to create StructuredModel classes dynamically from JSON configuration using the `model_from_json()` classmethod. This enables configuration-driven model creation with full comparison capabilities.
-
-## Overview
-
-The `StructuredModel.model_from_json()` method allows you to:
-
-- Create StructuredModel classes from JSON configuration
-- Define nested StructuredModel hierarchies
-- Configure custom comparators and thresholds
-- Support lists of StructuredModels with Hungarian matching
-- Enable configuration-driven model creation for flexible applications
-
-## Basic Usage
-
-### Simple Model Creation
->>>>>>> main
 
 ```python
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler import StructuredModel
 
 # Define model configuration
 person_config = {
@@ -636,7 +617,7 @@ company = Company(**company_json)
 
 ```python
 import json
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler import StructuredModel
 
 # Load configuration from file
 with open('model_config.json', 'r') as f:
@@ -855,7 +836,7 @@ def compare_objects():
 ### Validation
 
 ```python
-from stickler.structured_object_evaluator.models.field_converter import validate_fields_config
+from stickler.structured_object_evaluator.model_def.field_converter import validate_fields_config
 
 # Validate configuration before creating model
 try:

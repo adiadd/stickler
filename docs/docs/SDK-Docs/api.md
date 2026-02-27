@@ -5,32 +5,32 @@
       heading_level: 1
       members: false
 
-::: stickler.structured_object_evaluator.models.structured_model.StructuredModel
+::: stickler.structured_object_evaluator.model_def.structured_model.StructuredModel
     options:
       heading_level: 2
 
-::: stickler.structured_object_evaluator.models.comparable_field.ComparableField
+::: stickler.structured_object_evaluator.model_def.comparable_field.ComparableField
     options:
       heading_level: 2
 
-::: stickler.structured_object_evaluator.models.non_match_field.NonMatchField
+::: stickler.structured_object_evaluator.core.non_match.NonMatchField
     options:
       heading_level: 2
 
-::: stickler.structured_object_evaluator.models.non_match_field.NonMatchType
+::: stickler.structured_object_evaluator.core.non_match.NonMatchType
     options:
       heading_level: 2
 
 
 
-::: stickler.structured_object_evaluator.utils.anls_score.compare_structured_models
+::: stickler.structured_object_evaluator.evaluation.single.compare_structured_models
     options:
       heading_level: 2
 
-::: stickler.structured_object_evaluator.utils.anls_score.anls_score
+::: stickler.structured_object_evaluator.evaluation.single.anls_score
     options:
       heading_level: 2
 
-::: stickler.structured_object_evaluator.utils.compare_json.compare_json
+::: stickler.structured_object_evaluator.evaluation.single.compare_json
     options:
       heading_level: 2

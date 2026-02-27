@@ -192,9 +192,9 @@ result = ground_truth.compare_with(
 )
 ```
 
-#### Custom Comparison Behavior with x-stickler Extensions
+#### Custom Comparison Behavior with x-aws-stickler Extensions
 
-Use `x-stickler-*` extensions in your JSON Schema to customize comparison behavior:
+Use `x-aws-stickler-*` extensions in your JSON Schema to customize comparison behavior:
 
 ```python
 document_schema = {
@@ -203,12 +203,12 @@ document_schema = {
     "properties": {
         "title": {
             "type": "string",
-            "x-stickler-comparator": "fuzzy",  # Use fuzzy string matching
-            "x-stickler-threshold": 0.8  # Require 80% similarity
+            "x-aws-stickler-comparator": "LevenshteinComparator",
+            "x-aws-stickler-threshold": 0.8
         },
         "priority": {
             "type": "integer",
-            "x-stickler-weight": 2.0  # Double weight for priority field
+            "x-aws-stickler-weight": 2.0
         },
         "tags": {
             "type": "array",
@@ -221,11 +221,11 @@ document_schema = {
 Document = StructuredModel.from_json_schema(document_schema)
 ```
 
-**Available x-stickler Extensions:**
-- `x-stickler-comparator`: Comparison algorithm (`"exact"`, `"fuzzy"`, `"levenshtein"`, `"semantic"`)
-- `x-stickler-threshold`: Matching threshold (0.0 to 1.0, default: 0.5)
-- `x-stickler-weight`: Field importance weight (default: 1.0)
-- `x-stickler-clip-under-threshold`: Clip scores below threshold to 0.0 (boolean, default: false)
+**Available x-aws-stickler Extensions:**
+- `x-aws-stickler-comparator`: Comparison algorithm (`"ExactComparator"`, `"LevenshteinComparator"`, `"NumericComparator"`)
+- `x-aws-stickler-threshold`: Matching threshold (0.0 to 1.0, default: 0.5)
+- `x-aws-stickler-weight`: Field importance weight (default: 1.0)
+- `x-aws-stickler-clip-under-threshold`: Clip scores below threshold to 0.0 (boolean, default: false)
 
 **Supported JSON Schema Features:**
 - All primitive types: `string`, `number`, `integer`, `boolean`, `null`
@@ -368,11 +368,11 @@ The Structured Object Evaluator has been optimized to eliminate redundant Hungar
 - **Backward Compatibility**: All existing APIs maintained, optimization is transparent to users
 
 **Files Modified:**
-- `hungarian_helper.py`: Added unified `get_complete_matching_info()` method
-- `structured_model.py`: Updated to use single Hungarian matching call
-- `structured_list_comparator.py`: Optimized list comparison logic
-- `comparison_helper.py`: Updated helper methods
-- `evaluator_format_helper.py`: Updated evaluator formatting
+- `algorithms/hungarian_helper.py`: Added unified `get_complete_matching_info()` method
+- `structured_object_evaluator/model_def/structured_model.py`: Updated to use single Hungarian matching call
+- `structured_object_evaluator/comparators/structured_list_comparator.py`: Optimized list comparison logic
+- `structured_object_evaluator/comparison/comparison_helper.py`: Updated helper methods
+- `structured_object_evaluator/evaluation/evaluator_format_helper.py`: Updated evaluator formatting
 
 **Testing**: All 374 existing tests pass, ensuring no regression in functionality.
 
@@ -388,7 +388,7 @@ This architecture prioritizes correctness of the core comparison logic while kee
 
 ## Examples
 
-See the [examples](../../../examples/key_information_evaluation/structured_object_evaluator) directory for complete examples.
+See the [examples](../../../examples/scripts/) directory for complete examples.
 
 ## Known Limitations
 

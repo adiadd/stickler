@@ -322,8 +322,7 @@ import pytest
 from pydantic import Field, BaseModel
 
 # Local imports
-from stickler.structured_object_evaluator import StructuredModel
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
+from stickler import StructuredModel, ComparableField
 from stickler.comparators.levenshtein import LevenshteinComparator
 ```
 

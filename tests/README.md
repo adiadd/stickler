@@ -72,8 +72,7 @@ def test_exact_match():
 ### StructuredModel Test Pattern
 
 ```python
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
+from stickler import StructuredModel, ComparableField
 from stickler.comparators.levenshtein import LevenshteinComparator
 
 class TestModel(StructuredModel):

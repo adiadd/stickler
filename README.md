@@ -146,7 +146,7 @@ print(f"Confidence AUROC: {result['auroc_confidence_metric']:.3f}")
 Create models from JSON configuration for maximum flexibility:
 
 ```python
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
+from stickler import StructuredModel
 
 # Define model configuration
 config = {

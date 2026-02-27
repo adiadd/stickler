@@ -1,51 +1,51 @@
 # Models
 
-::: stickler.structured_object_evaluator.models
+::: stickler.structured_object_evaluator.model_def
     options:
       heading_level: 1
       members: false
 
-::: stickler.structured_object_evaluator.models.structured_model
+::: stickler.structured_object_evaluator.model_def.structured_model
     options:
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.structured_model.StructuredModel
+::: stickler.structured_object_evaluator.model_def.structured_model.StructuredModel
     options:
       heading_level: 3
 
-::: stickler.structured_object_evaluator.models.comparable_field
+::: stickler.structured_object_evaluator.model_def.comparable_field
     options:
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.comparable_field.ComparableField
+::: stickler.structured_object_evaluator.model_def.comparable_field.ComparableField
     options:
       heading_level: 3
 
-::: stickler.structured_object_evaluator.models.non_match_field
+::: stickler.structured_object_evaluator.core.non_match
     options:
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.non_match_field.NonMatchField
+::: stickler.structured_object_evaluator.core.non_match.NonMatchField
     options:
       heading_level: 3
 
-::: stickler.structured_object_evaluator.models.non_match_field.NonMatchType
+::: stickler.structured_object_evaluator.core.non_match.NonMatchType
     options:
       heading_level: 3
 
-::: stickler.structured_object_evaluator.models.field
+::: stickler.structured_object_evaluator.core.field
     options:
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.comparison_info
+::: stickler.structured_object_evaluator.comparison.result
     options:
       heading_level: 2
       members: false
 
-::: stickler.structured_object_evaluator.models.comparison_info.ComparisonInfo
+::: stickler.structured_object_evaluator.comparison.result.ComparisonInfo
     options:
       heading_level: 3

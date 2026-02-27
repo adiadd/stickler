@@ -112,11 +112,15 @@ Understanding the project structure helps navigate the codebase:
 ```
 stickler/
 ├── src/stickler/                    # Source code
-│   ├── __init__.py
+│   ├── __init__.py                  # Public API re-exports
 │   ├── structured_object_evaluator/ # Core evaluation engine
-│   │   ├── models/                  # StructuredModel, ComparableField
-│   │   ├── evaluators/              # Evaluation logic
-│   │   └── ...
+│   │   ├── core/                    # Core types (Field, NonMatch, types)
+│   │   ├── model_def/               # StructuredModel, ComparableField, factory
+│   │   ├── comparators/             # Internal comparison logic
+│   │   ├── comparison/              # Comparison pipeline & results
+│   │   ├── metrics/                 # Aggregate metrics calculation
+│   │   ├── evaluation/              # Bulk & single evaluation, key scores
+│   │   └── reporting/               # Result formatting helpers
 │   ├── comparators/                 # Comparison algorithms
 │   │   ├── base.py                  # BaseComparator
 │   │   ├── levenshtein.py
@@ -124,8 +128,7 @@ stickler/
 │   │   ├── exact.py
 │   │   └── ...
 │   ├── algorithms/                  # Matching algorithms
-│   ├── utils/                       # Shared utilities
-│   └── reporting/                   # Result formatting
+│   └── reporting/                   # Result formatting (text, HTML)
 ├── tests/                           # Test suite
 │   ├── structured_object_evaluator/ # Core tests
 │   ├── common/                      # Comparator/algorithm tests

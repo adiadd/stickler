@@ -44,6 +44,28 @@ This directory contains comprehensive examples demonstrating the core functional
   - Complex nested structures and list matching
   - Production-ready JSON-driven evaluation
 
+- **`scripts/json_schema_demo.py`** - JSON Schema model creation
+  - Create models from standard JSON Schema documents
+  - Use `x-aws-stickler-*` extensions for comparison configuration
+  - Nested schemas with `$ref` support
+
+- **`scripts/aggregate_metrics_demo.py`** - Aggregate metrics calculation
+  - Universal aggregate field feature
+  - Hierarchical metric rollup
+  - Precision, recall, F1, and accuracy calculations
+
+- **`scripts/confidence_score_demo.py`** - Confidence score evaluation
+  - AUROC confidence metric
+  - Confidence-based evaluation workflows
+
+- **`scripts/html_report_demo.py`** - HTML report generation
+  - Rich HTML evaluation reports
+  - Visual comparison results
+
+- **`scripts/llm_comparator_demo.py`** - LLM-based comparison
+  - Using LLM comparators for semantic evaluation
+  - Integration with language model APIs
+
 ### 3. Interactive Notebooks
 - **`notebooks/Quick_start.ipynb`** - Interactive introduction
   - Step-by-step guided examples  
@@ -63,6 +85,11 @@ This directory contains comprehensive examples demonstrating the core functional
 | `non_match_analysis_demo.py` | ✅ | ✅ | ✅ | ✅ | ➖ | ➖ |
 | `bulk_evaluation_demo.py` | ✅ | ➖ | ➖ | ➖ | ✅ | ➖ |
 | `print_results_demo.py` | ✅ | ➖ | ➖ | ➖ | ➖ | ✅ |
+| `json_schema_demo.py` | ✅ | ✅ | ✅ | ➖ | ➖ | ➖ |
+| `aggregate_metrics_demo.py` | ✅ | ➖ | ✅ | ➖ | ➖ | ➖ |
+| `confidence_score_demo.py` | ✅ | ➖ | ➖ | ➖ | ➖ | ➖ |
+| `html_report_demo.py` | ✅ | ➖ | ➖ | ➖ | ➖ | ✅ |
+| `llm_comparator_demo.py` | ✅ | ➖ | ➖ | ➖ | ➖ | ➖ |
 | `Quick_start.ipynb` | ✅ | ✅ | ➖ | ➖ | ➖ | ✅ |
 | `Complex_nested_structure.ipynb` | ✅ | ✅ | ✅ | ✅ | ➖ | ✅ |
 
@@ -151,7 +178,7 @@ For comprehensive documentation, see:
 
 If examples don't run:
 1. Install dependencies: `pip install -r requirements.txt`
-2. Check Python version: Requires Python 3.8+
+2. Check Python version: Requires Python 3.12+
 3. Verify installation: `python -c "import stickler; print('Success!')"`
 
 ## 🎉 Key Insight

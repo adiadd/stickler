@@ -97,8 +97,7 @@ Define test models within test files for isolated testing:
 
 ```python
 from typing import Optional
-from stickler.structured_object_evaluator.models.structured_model import StructuredModel
-from stickler.structured_object_evaluator.models.comparable_field import ComparableField
+from stickler import StructuredModel, ComparableField
 from stickler.comparators.levenshtein import LevenshteinComparator
 from stickler.comparators.exact import ExactComparator
 

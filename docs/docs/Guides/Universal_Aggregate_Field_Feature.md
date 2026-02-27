@@ -30,9 +30,8 @@ The Universal Aggregate Field feature provides automatic aggregation of confusio
 ### Basic Usage
 
 ```python
-from src.stickler.structured_object_evaluator.models.structured_model import StructuredModel
-from src.stickler.structured_object_evaluator.models.comparable_field import ComparableField
-from src.stickler.comparators.exact import ExactComparator
+from stickler import StructuredModel, ComparableField
+from stickler.comparators.exact import ExactComparator
 
 class Contact(StructuredModel):
     phone: str = ComparableField(comparator=ExactComparator(), threshold=1.0)
